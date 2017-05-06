@@ -1,11 +1,11 @@
 /* CONFIG */
-var UserConfig = require('../../src/scripts/config/config');
+var UserConfig = require('../../../src/scripts/config/config');
 var RouterConfig = require('./libs/router-config');
 var CONFIG = new RouterConfig(UserConfig.env);
 /* CONFIG */
 
 /* PAGES */
-var Pages = require('../../src/scripts/config/pages');
+var Pages = require('../../../src/scripts/config/pages');
 /* PAGES */
 
 /* PUSHSTATE */
@@ -53,11 +53,11 @@ var Router = (function () {
 		
 		document.body.classList.add('app-is-ready');
 		
-		var _allPages = require('../../src/scripts/pages/' + _ALLPAGES)();
+		var _allPages = require('../../../src/scripts/pages/' + _ALLPAGES)();
 		new _allPages(CONFIG).onLoad(currentRoute);
 		
 		if (pages[currentRoute]) {
-			var _currentPage = require('../../src/scripts/pages/' + currentRoute)();
+			var _currentPage = require('../../../src/scripts/pages/' + currentRoute)();
 			new _currentPage(CONFIG).onLoad();
 		}
 		
@@ -69,7 +69,7 @@ var Router = (function () {
 			
 			if (history.pages.indexOf(currentRoute) < 0) {
 				history.pages.push(currentRoute);
-				var _currentPage = require('../../src/scripts/pages/' + pages[currentRoute])();
+				var _currentPage = require('../../../src/scripts/pages/' + pages[currentRoute])();
 				history.modules[currentRoute] = new _currentPage(CONFIG);
 			}
 			
@@ -77,7 +77,7 @@ var Router = (function () {
 			var _content = history.modules[currentRoute].content;
 			
 			if (_content) {
-				var _template = require('../../src/views/' + currentRoute + '.html.twig');
+				var _template = require('../../../src/views/' + currentRoute + '.html.twig');
 				_section.html(_template(_content));
 			}
 			
@@ -98,7 +98,7 @@ var Router = (function () {
 			
 			document.body.classList.add('app-is-ready');
 			
-			var _allPages = require('../../src/scripts/pages/' + _ALLPAGES)(CONFIG);
+			var _allPages = require('../../../src/scripts/pages/' + _ALLPAGES)(CONFIG);
 			
 			var _allPagesClass = new _allPages(CONFIG);
 			
