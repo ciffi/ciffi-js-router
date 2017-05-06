@@ -1,7 +1,7 @@
 [npm-month]: https://img.shields.io/npm/dm/ciffi-js-router.svg
 [npm-total]: https://img.shields.io/npm/dt/ciffi-js-router.svg
 [npm-version]: https://img.shields.io/npm/v/ciffi-js-router.svg
-[npm-url]: https://www.npmjs.com/package/ciffi
+[npm-url]: https://www.npmjs.com/package/ciffi-js-router
 
 [![npm-version][npm-version]][npm-url]
 [![npm-month][npm-month]][npm-url]

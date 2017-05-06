@@ -1,6 +1,6 @@
 {
   "name": "ciffi-js-router",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "JS Router for ciffi-js based project",
   "main": "./dist/router.min.js",
   "repository": {
