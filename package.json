@@ -1,11 +1,32 @@
 {
   "name": "ciffi-js-router",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "JS Router for ciffi-js based project",
   "main": "./dist/router.min.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ciffi/ciffi-js-router"
   },
-  "author": "ciffi",
-  "license": "ISC"
+  "author": {
+    "name": "Ciffi"
+  },
+  "keywords": [
+    "ciffi",
+    "ciffi-js",
+    "javascript",
+    "router",
+    "spa",
+    "framework",
+    "front-end",
+    "development",
+    "dev",
+    "build",
+    "web",
+    "tool",
+    "stack",
+    "module"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ciffi/ciffi-js-router",
+  "preferGlobal": false
 }
