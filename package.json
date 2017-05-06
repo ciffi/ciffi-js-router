@@ -2,10 +2,10 @@
   "name": "ciffi-js-router",
   "version": "0.1.0",
   "description": "",
-  "main": "router.min.js",
+  "main": "./dist/router.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "ciffi",
   "license": "ISC"
 }
