@@ -12,3 +12,5 @@
 JS Router for [Ciffi-js](https://www.npmjs.com/package/ciffi) based projects
 
 coming soon 🤓
+
+__full documentation available at [ciffi.it/ciffi-js](https://www.ciffi.it/ciffi-js/docs/router)__
