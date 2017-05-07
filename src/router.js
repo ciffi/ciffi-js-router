@@ -1,6 +1,6 @@
 /* CONFIG */
 var UserConfig = require('../../../src/scripts/config/config');
-var RouterConfig = require('./libs/router-config');
+var RouterConfig = require('./libs/router-config.min');
 var CONFIG = new RouterConfig(UserConfig.env);
 /* CONFIG */
 
@@ -9,7 +9,7 @@ var Pages = require('../../../src/scripts/config/pages');
 /* PAGES */
 
 /* PUSHSTATE */
-var PushState = require('./libs/pushstate');
+var PushState = require('./libs/pushstate.min');
 /* PUSHSTATE */
 
 var $ = require('jquery');
@@ -42,8 +42,11 @@ var Router = (function () {
 	function checkRoute(routes) {
 		var _currentRoute = false;
 		$.each(routes, function (index, route) {
-			if ($(route).length > 0) {
-				_currentRoute = index;
+			if ($(index).length > 0) {
+				_currentRoute = {
+					trigger: index,
+					route: route
+				};
 			}
 		});
 		return _currentRoute;
@@ -54,12 +57,10 @@ var Router = (function () {
 		document.body.classList.add('app-is-ready');
 		
 		var _allPages = require('../../../src/scripts/pages/' + _ALLPAGES)();
-		new _allPages(CONFIG).onLoad(currentRoute);
+		new _allPages(CONFIG).onLoad(currentRoute.route);
 		
-		if (pages[currentRoute]) {
-			var _currentPage = require('../../../src/scripts/pages/' + currentRoute)();
-			new _currentPage(CONFIG).onLoad();
-		}
+		var _currentPage = require("../../../src/scripts/pages/" + currentRoute.route)();
+		new _currentPage(CONFIG).onLoad()
 		
 	}
 	
