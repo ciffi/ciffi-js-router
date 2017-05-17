@@ -83,7 +83,7 @@ var Router = (function () {
 			}
 			
 			history.modules[currentRoute].onLoad();
-			allPages.onLoad(pages[currentRoute]);
+			allPages.onLoad({module: pages[currentRoute], route: currentRoute});
 		}
 	}
 	
