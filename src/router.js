@@ -83,8 +83,9 @@ var Router = (function () {
 			}
 			
 			history.modules[currentRoute].onLoad();
-			allPages.onLoad({module: pages[currentRoute], route: currentRoute});
 		}
+		
+		allPages.onLoad({module: pages[currentRoute], route: currentRoute});
 	}
 	
 	Router.prototype.init = function () {
