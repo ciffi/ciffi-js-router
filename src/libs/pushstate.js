@@ -7,7 +7,7 @@ var PushState = (function () {
 		this.init();
 	}
 	
-	function setLinkInteractions(Pushstate) {
+	function setLinkInteractions(PushState) {
 		$(document).on('click', 'a[href]:not([data-push="false"])', function (e) {
 			e.preventDefault();
 			var _url = $(this).attr('href');
@@ -19,13 +19,13 @@ var PushState = (function () {
 			var _data = {
 				url: _url
 			};
-			newUrl(_data, _url, Pushstate);
+			newUrl(_data, _url, PushState);
 			return false;
 		});
 	}
 	
-	function newUrl(data, url, Pushstate) {
-		if (!Pushstate.currentRoute || Pushstate.currentRoute !== url) {
+	function newUrl(data, url, PushState) {
+		if (!PushState.currentRoute || PushState.currentRoute !== url) {
 			if (url === '') {
 				window.history.pushState(data, null, window.location.pathname);
 			} else {

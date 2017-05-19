@@ -19,7 +19,7 @@ var Router = (function () {
 	
 	function Router(pages) {
 		checkConfig(pages, $.proxy(function () {
-			this.pages = pages;
+			this.pages = JSON.stringify(pages).length === 2 ? false : pages;
 			this.history = {
 				pages: [],
 				modules: {}
@@ -31,7 +31,6 @@ var Router = (function () {
 	function checkConfig(pages, successCallback) {
 		var errorMessage = false;
 		if (pages && typeof pages === 'object') {
-			
 			if (!errorMessage) {
 				successCallback();
 			}
@@ -66,26 +65,32 @@ var Router = (function () {
 	
 	function onPushStateChange(history, pages, currentRoute, allPages) {
 		
-		if (pages[currentRoute]) {
-			
-			if (history.pages.indexOf(currentRoute) < 0) {
-				history.pages.push(currentRoute);
-				var _currentPage = require('../../../src/scripts/pages/' + pages[currentRoute])();
-				history.modules[currentRoute] = new _currentPage(CONFIG);
-			}
-			
-			var _section = $('c-view');
+		if (pages && pages[currentRoute] && history.pages.indexOf(currentRoute) < 0) {
+			history.pages.push(currentRoute);
+			var _currentPage = require('../../../src/scripts/pages/' + pages[currentRoute])();
+			history.modules[currentRoute] = new _currentPage(CONFIG);
+		}
+		
+		if (history.modules[currentRoute]) {
+			var _containerView = $('c-view');
 			var _content = history.modules[currentRoute].content;
 			
-			if (_content) {
-				var _template = require('../../../src/views/' + currentRoute + '.html.twig');
-				_section.html(_template(_content));
-			}
+			this.currentRoute = currentRoute;
+			this.containerView = _containerView;
+			
+			renderTemplate.bind(this)(_content);
 			
 			history.modules[currentRoute].onLoad();
 		}
 		
 		allPages.onLoad({module: pages[currentRoute], route: currentRoute});
+	}
+	
+	function renderTemplate(content) {
+		if (content) {
+			var _template = require('../../../src/views/' + this.currentRoute + '.html.twig');
+			this.containerView.html(_template(content));
+		}
 	}
 	
 	Router.prototype.init = function () {
@@ -110,13 +115,16 @@ var Router = (function () {
 				PushState.watcher(this.pages, $.proxy(function (data) {
 					var _routes = this.pages;
 					var _currentRoute = data.url;
-					onPushStateChange(this.history, _routes, _currentRoute, _allPagesClass);
+					onPushStateChange.bind(this)(this.history, _routes, _currentRoute, _allPagesClass);
 				}, this));
 			}
 			
 			var _requestRoute = window.location.pathname.replace('/', '');
+			
 			if (this.pages.hasOwnProperty(_requestRoute)) {
 				PushState.push({url: _requestRoute}, _requestRoute);
+			} else if (!this.pages) {
+				PushState.push({url: _requestRoute}, '');
 			} else {
 				var _count = 0;
 				$.each(this.pages, function (url) {
@@ -134,6 +142,15 @@ var Router = (function () {
 			
 			return 'pushState disabled';
 		}
+	};
+	
+	Router.prototype.render = function (content) {
+		renderTemplate.bind(this)(content);
+		this.history.modules[this.currentRoute].onLoad();
+	};
+	
+	Router.prototype.go = function (content) {
+		PushState.push({url: content}, content);
 	};
 	
 	return new Router(Pages);

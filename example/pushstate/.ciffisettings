@@ -1,0 +1,10 @@
+'use strict';
+
+var CiffiSettings = {
+	projectName: 'router',
+	assetsPath: '../static',
+	assetsPathName: 'src',
+	bundle: 'webpack2'
+};
+
+module.exports = CiffiSettings;
