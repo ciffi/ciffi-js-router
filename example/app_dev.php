@@ -74,6 +74,13 @@
         <br/>
         <br/>
 
+        <button type="button" class="js-button" data-route="random/one/two">TEST ROUTE
+            RANDOM/ONE/TWO
+        </button>
+
+        <br/>
+        <br/>
+
     </section>
 
     <c-view></c-view>
