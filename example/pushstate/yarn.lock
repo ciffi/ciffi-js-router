@@ -558,9 +558,9 @@ chromedriver@^2.24.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
 
-ciffi-js-router@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/ciffi-js-router/-/ciffi-js-router-0.2.7.tgz#b225eab76f7b1d1b0e906cb15d37a34bd78bf71f"
+ciffi-js-router@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/ciffi-js-router/-/ciffi-js-router-0.2.8.tgz#8bdc3ea88cd56bc7c21195cf5d7c08f03b58bcfb"
 
 cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   version "1.0.3"

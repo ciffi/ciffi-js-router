@@ -14,8 +14,9 @@ var Page = (function () {
 		
 	}
 	
-	function onLoad() {
+	function onLoad(data) {
 		console.log('example page loaded');
+		console.log(data);
 	}
 	
 	return Page;

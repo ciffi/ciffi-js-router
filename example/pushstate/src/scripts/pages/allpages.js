@@ -22,7 +22,9 @@ const Page = (function () {
 	
 	function start() {
 		$('.js-button').click(function () {
-			Router.go($(this).attr('data-route'));
+			Router.go($(this).attr('data-route'), {
+				yeah: 'yeah'
+			});
 		});
 	}
 	

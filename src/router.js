@@ -42,7 +42,7 @@ var Router = function () {
 		new _currentPage(CONFIG).onLoad()
 	}
 	
-	function onPushStateChange(history, pages, currentRoute, allPages) {
+	function onPushStateChange(history, pages, currentRoute, params, allPages) {
 		if (pages && pages[currentRoute] && history.pages.indexOf(currentRoute) < 0) {
 			history.pages.push(currentRoute);
 			var _currentPage = require("../../../src/scripts/pages/" + pages[currentRoute])();
@@ -54,9 +54,17 @@ var Router = function () {
 			this.currentRoute = currentRoute;
 			this.containerView = _containerView;
 			renderTemplate.bind(this)(_content);
-			history.modules[currentRoute].onLoad()
+			history.modules[currentRoute].onLoad({
+				module: pages[currentRoute],
+				route: currentRoute,
+				params: params
+			})
 		}
-		allPages.onLoad({module: pages[currentRoute], route: currentRoute})
+		allPages.onLoad({
+			module: pages[currentRoute],
+			route: currentRoute,
+			params: params
+		});
 	}
 	
 	function renderTemplate(content) {
@@ -81,7 +89,8 @@ var Router = function () {
 				PushState.watcher(this.pages, $.proxy(function (data) {
 					var _routes = this.pages;
 					var _currentRoute = data.url;
-					onPushStateChange.bind(this)(this.history, _routes, _currentRoute, _allPagesClass)
+					var _params = data.params;
+					onPushStateChange.bind(this)(this.history, _routes, _currentRoute, _params, _allPagesClass)
 				}, this))
 			}
 			var _requestRoute = window.location.pathname.replace("/", "");
@@ -108,8 +117,9 @@ var Router = function () {
 		renderTemplate.bind(this)(content);
 		this.history.modules[this.currentRoute].onLoad()
 	};
-	Router.prototype.go = function (content) {
-		PushState.push({url: content}, content)
+	Router.prototype.go = function (content, params) {
+		var _params = params || undefined;
+		PushState.push({url: content, params: _params}, content)
 	};
 	return new Router(Pages)
 }();
