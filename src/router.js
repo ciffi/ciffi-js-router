@@ -54,17 +54,9 @@ var Router = function () {
 			this.currentRoute = currentRoute;
 			this.containerView = _containerView;
 			renderTemplate.bind(this)(_content);
-			history.modules[currentRoute].onLoad({
-				module: pages[currentRoute],
-				route: currentRoute,
-				params: params
-			})
+			history.modules[currentRoute].onLoad({module: pages[currentRoute], route: currentRoute, params: params})
 		}
-		allPages.onLoad({
-			module: pages[currentRoute],
-			route: currentRoute,
-			params: params
-		});
+		allPages.onLoad({module: pages[currentRoute], route: currentRoute, params: params})
 	}
 	
 	function renderTemplate(content) {
@@ -118,8 +110,9 @@ var Router = function () {
 		this.history.modules[this.currentRoute].onLoad()
 	};
 	Router.prototype.go = function (content, params) {
+		var _content = content === '/' ? '' : content;
 		var _params = params || undefined;
-		PushState.push({url: content, params: _params}, content)
+		PushState.push({url: content, params: _params}, _content)
 	};
 	return new Router(Pages)
 }();

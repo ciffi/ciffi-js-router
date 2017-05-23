@@ -81,6 +81,20 @@
         <br/>
         <br/>
 
+        <button type="button" class="js-button" data-route="">TEST
+            ROUTE VUOTA
+        </button>
+
+        <br/>
+        <br/>
+
+        <button type="button" class="js-button" data-route="/">TEST
+            ROUTE SLASH
+        </button>
+
+        <br/>
+        <br/>
+
     </section>
 
     <c-view></c-view>
