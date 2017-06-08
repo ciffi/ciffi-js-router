@@ -45,8 +45,9 @@ var PushState = function () {
 			if (e.state) {
 				this.currentRoute = e.state.url;
 				callback(e.state)
+				$(document).trigger('routeChange');
 			} else {
-				window.location.reload()
+				//window.location.reload()
 			}
 		}, this);
 		setLinkInteractions(this);

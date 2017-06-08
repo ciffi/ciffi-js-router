@@ -26,6 +26,10 @@ const Page = (function () {
 				yeah: 'yeah'
 			});
 		});
+		
+		window.onhashchange = function () {
+			console.log('asd');
+		};
 	}
 	
 	return Page;
