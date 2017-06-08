@@ -37,9 +37,13 @@ var Router = function () {
 	function onPagesLoaded(pages, currentRoute) {
 		document.body.classList.add("app-is-ready");
 		var _allPages = require("../../../src/scripts/pages/" + _ALLPAGES)();
-		new _allPages(CONFIG).onLoad(currentRoute.route);
-		var _currentPage = require("../../../src/scripts/pages/" + currentRoute.route)();
-		new _currentPage(CONFIG).onLoad()
+		if (currentRoute) {
+			new _allPages(CONFIG).onLoad(currentRoute.route);
+			var _currentPage = require("../../../src/scripts/pages/" + currentRoute.route)();
+			new _currentPage(CONFIG).onLoad();
+		} else {
+			new _allPages(CONFIG).onLoad(false);
+		}
 	}
 	
 	function onPushStateChange(history, pages, currentRoute, params, allPages) {
